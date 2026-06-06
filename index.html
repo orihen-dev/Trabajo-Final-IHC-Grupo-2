@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MedSeguro – Verifica. Confía. Cuida tu salud.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="logo" onclick="goTo('inicio')">
+        <div class="logo-icon">+</div>
+        <span>MedSeguro</span>
+      </div>
+      <ul class="nav-links">
+        <li><a onclick="goTo('inicio')" data-page="inicio">Inicio</a></li>
+        <li><a onclick="goTo('inicio', 'como-funciona')" data-page="inicio">Cómo funciona</a></li>
+        <li><a onclick="goTo('inicio', 'beneficios')" data-page="inicio">Beneficios</a></li>
+        <li><a onclick="goTo('alertas')" data-page="alertas">Alertas</a></li>
+        <li><a onclick="goTo('nosotros')" data-page="nosotros">Sobre Nosotros</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn-outline" onclick="openModal('loginModal')">Sign in</button>
+        <button class="btn-primary" onclick="openModal('registerModal')">Register</button>
+      </div>
+      <button class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a onclick="goTo('inicio');toggleMenu()">Inicio</a>
+      <a onclick="goTo('alertas');toggleMenu()">Alertas</a>
+      <a onclick="goTo('nosotros');toggleMenu()">Sobre Nosotros</a>
+      <a onclick="goTo('historial');toggleMenu()">Historial</a>
+      <hr>
+      <button class="btn-outline" onclick="openModal('loginModal')">Sign in</button>
+      <button class="btn-primary" onclick="openModal('registerModal')">Register</button>
+    </div>
+  </nav>
+
+  <!-- ==================== PAGE: INICIO ==================== -->
+  <div class="page active" id="page-inicio">
+
+    <!-- HERO -->
+    <section class="hero" id="sec-inicio">
+      <div class="hero-content">
+        <p class="hero-tag">Verifica. Confía. Protege tu salud</p>
+        <h1 class="hero-title">VERIFICA TUS<br>MEDICAMENTOS<br>AL INSTANTE</h1>
+        <p class="hero-sub">Consulta si un medicamento es auténtico, seguro y está autorizado por <strong>DIGEMID</strong>.</p>
+        <div class="hero-actions">
+          <button class="btn-hero-cam" onclick="openModal('scanModal')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            Escanear medicamento
+          </button>
+          <button class="btn-hero-search" onclick="document.getElementById('searchInput').focus()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            Buscar por nombre
+          </button>
+        </div>
+        <div class="hero-search-bar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="searchInput" placeholder="Buscar medicamento por nombre, lote o registro..." onkeydown="if(event.key==='Enter') buscarMedicamento()"/>
+          <button onclick="buscarMedicamento()">Buscar</button>
+        </div>
+        <p class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Información oficial y confiable de DIGEMID
+        </p>
+      </div>
+      <div class="hero-phone">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="phone-app-header"><span>MedSeguro</span><div class="phone-shield">+</div></div>
+            <div class="phone-scan-area"><p>📷</p><p>Enfoca el código de barras</p></div>
+            <div class="phone-actions-mini"><button>📷 Escanear</button><button>🔍 Buscar</button></div>
+          </div>
+        </div>
+        <div class="phone-badges">
+          <div class="phone-badge-item"><span class="badge-num">50K+</span><span>Verificaciones</span></div>
+          <div class="phone-badge-item"><span class="badge-num">DIGEMID</span><span>Oficial</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HISTORIAL BANNER -->
+    <section class="historial-banner">
+      <div class="historial-inner">
+        <div class="historial-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div><h3>CONSULTA TU HISTORIAL</h3><p>Revisa tus verificaciones anteriores de manera rápida y segura</p></div>
+        <button class="btn-historial" onclick="goTo('historial')">Ver historial ›</button>
+      </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section class="beneficios" id="sec-beneficios">
+      <h2>¿Por qué usar<br><span class="green">MedSeguro?</span></h2>
+      <div class="beneficios-grid">
+        <div class="beneficio-card"><div class="beneficio-icon">🛡️</div><h3>Protege tu salud</h3><p>Evita riesgos al consumir medicamentos falsificados no autorizados</p></div>
+        <div class="beneficio-card"><div class="beneficio-icon">🏥</div><h3>Encuentra farmacias</h3><p>Conoce dónde comprar en establecimientos autorizados y cercanos a ti.</p></div>
+        <div class="beneficio-card"><div class="beneficio-icon">🔔</div><h3>Alertas sanitarias</h3><p>Recibe notificaciones sobre alertas y retiros de medicamentos.</p></div>
+      </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section class="como-funciona" id="sec-como-funciona">
+      <h2>¿Cómo funciona?</h2>
+      <div class="pasos">
+        <div class="paso"><div class="paso-num">1</div><h3>Escanea</h3><p>Usa la cámara para escanear el código del medicamento</p></div>
+        <div class="paso-arrow">→</div>
+        <div class="paso"><div class="paso-num">2</div><h3>Verificamos</h3><p>Consultamos la base oficial de DIGEMID en segundos.</p></div>
+        <div class="paso-arrow">→</div>
+        <div class="paso"><div class="paso-num">3</div><h3>Obtén resultados</h3><p>Conoce si es auténtico, su estado y recomendaciones</p></div>
+        <div class="paso-arrow">→</div>
+        <div class="paso"><div class="paso-num">4</div><h3>Guarda o consulta</h3><p>Revisa tu historial cuando lo necesites.</p></div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="testimonios">
+      <h2>TESTIMONIOS</h2>
+      <div class="testimonios-grid">
+        <div class="testimonio-card"><div class="testimonio-avatar">A</div><p>"Gracias a MedSeguro pude verificar que el medicamento que compré era auténtico. Me da mucha tranquilidad."</p><div class="testimonio-footer"><strong>Ana García</strong><span>Lima, Perú</span></div></div>
+        <div class="testimonio-card"><div class="testimonio-avatar">M</div><p>"Muy fácil de usar. Escaneé el código y en segundos supe si era genuino. Increíble para proteger a mi familia."</p><div class="testimonio-footer"><strong>Miguel Torres</strong><span>Arequipa, Perú</span></div></div>
+        <div class="testimonio-card"><div class="testimonio-avatar">L</div><p>"Las alertas sanitarias son muy útiles. Me avisaron de un retiro que yo tenía en casa. Lo recomiendo a todos."</p><div class="testimonio-footer"><strong>Lucía Mendoza</strong><span>Trujillo, Perú</span></div></div>
+      </div>
+    </section>
+
+    <!-- DESCARGA -->
+    <section class="descarga">
+      <div class="descarga-content">
+        <h2>Descarga MedSeguro y verifica donde estés</h2>
+        <p>Lleva la seguridad en tu bolsillo. Verifica medicamentos, recibe alertas y consulta tu historial en cualquier momento</p>
+        <div class="descarga-btns">
+          <button class="btn-store">🍎 App Store</button>
+          <button class="btn-store">▶ Google Play</button>
+        </div>
+      </div>
+      <div class="descarga-phone">
+        <div class="descarga-phone-label">DESCARGA YA</div>
+        <div class="phone-frame small"><div class="phone-screen dark"><div class="phone-app-header"><div class="phone-shield">+</div><span style="color:white;font-size:0.75rem">MedSeguro</span></div></div></div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div class="footer-trust-bar">
+      <div class="footer-trust-inner">
+        <div><strong>Tu salud es lo más importante</strong><p>MedSeguro te brinda información confiable para que tomes decisiones seguras</p></div>
+        <div class="footer-badges">
+          <div class="footer-badge-block"><span class="badge-label">Fuente oficial</span><span class="badge-tag">🏛 DIGEMID</span></div>
+          <div class="footer-badge-block"><span class="badge-label">Autorizado por</span><span class="badge-tag">🇵🇪 Ministerio de Salud del Perú</span></div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer-bottom">
+        <div class="footer-brand">
+          <div class="logo"><div class="logo-icon">+</div><span>MedSeguro</span></div>
+          <p>Aplicación que te ayuda a verificar la autenticidad de medicamentos de forma rápida, segura y con información oficial</p>
+          <div class="footer-social"><a href="#">f</a><a href="#">ig</a><a href="#">tw</a><a href="#">yt</a></div>
+        </div>
+        <div class="footer-col"><h4>Enlaces rápidos</h4><a onclick="goTo('inicio')">Inicio</a><a onclick="goTo('inicio','como-funciona')">Cómo funciona</a><a onclick="goTo('inicio','beneficios')">Beneficios</a><a onclick="goTo('alertas')">Alertas</a></div>
+        <div class="footer-col"><h4>Recursos</h4><a href="#">Preguntas frecuentes</a><a href="#">Términos y condiciones</a><a href="#">Políticas</a><a onclick="goTo('nosotros')">Contáctanos</a></div>
+        <div class="footer-col"><h4>Contacto</h4><a href="mailto:MedSeguroOficial@gmail.com">MedSeguroOficial@gmail.com</a><a href="mailto:MedSeguroOficial@outlook.com">MedSeguroOficial@outlook.com</a><a href="mailto:MedSeguroOficial@yahoo.com">MedSeguroOficial@yahoo.com</a></div>
+      </div>
+      <div class="footer-copy"><p>© 2024 MedSeguro. Todos los derechos reservados.</p></div>
+    </footer>
+  </div>
+
+  <!-- ==================== PAGE: ALERTAS ==================== -->
+  <div class="page" id="page-alertas">
+    <div class="page-hero" style="background:linear-gradient(135deg,#0d0d0d 60%,#0d2a1a)">
+      <div class="page-hero-inner">
+        <h1>ALERTAS SANITARIAS</h1>
+        <p>Mantente informado sobre riesgos y retiros de medicamentos</p>
+        <div class="filters">
+          <button class="filter-btn active" onclick="filtrarAlertas('todas',this)">Todas</button>
+          <button class="filter-btn f-riesgo" onclick="filtrarAlertas('riesgo',this)">Riesgo alto</button>
+          <button class="filter-btn f-advertencia" onclick="filtrarAlertas('advertencia',this)">Advertencia</button>
+          <button class="filter-btn f-falsificado" onclick="filtrarAlertas('falsificado',this)">Falsificado</button>
+          <button class="filter-btn" onclick="filtrarAlertas('retiro',this)">Retiro</button>
+        </div>
+      </div>
+    </div>
+    <div class="section-container">
+      <div class="alertas-list" id="alertasList"></div>
+      <button class="btn-ver-todas">VER TODAS LAS ALERTAS</button>
+    </div>
+    <div class="footer-trust-bar">
+      <div class="footer-trust-inner">
+        <div><strong>Tu salud es lo más importante</strong><p>MedSeguro te brinda información confiable para que tomes decisiones seguras</p></div>
+        <div class="footer-badges">
+          <div class="footer-badge-block"><span class="badge-label">Fuente oficial</span><span class="badge-tag">🏛 DIGEMID</span></div>
+          <div class="footer-badge-block"><span class="badge-label">Autorizado por</span><span class="badge-tag">🇵🇪 Ministerio de Salud del Perú</span></div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer-bottom">
+        <div class="footer-brand"><div class="logo"><div class="logo-icon">+</div><span>MedSeguro</span></div><p>Verificación oficial de medicamentos</p><div class="footer-social"><a href="#">f</a><a href="#">ig</a><a href="#">tw</a><a href="#">yt</a></div></div>
+        <div class="footer-col"><h4>Enlaces rápidos</h4><a onclick="goTo('inicio')">Inicio</a><a onclick="goTo('alertas')">Alertas</a><a onclick="goTo('nosotros')">Sobre Nosotros</a></div>
+        <div class="footer-col"><h4>Contacto</h4><a href="mailto:MedSeguroOficial@gmail.com">MedSeguroOficial@gmail.com</a></div>
+      </div>
+      <div class="footer-copy"><p>© 2024 MedSeguro. Todos los derechos reservados.</p></div>
+    </footer>
+  </div>
+
+  <!-- ==================== PAGE: SOBRE NOSOTROS ==================== -->
+  <div class="page" id="page-nosotros">
+    <div class="page-hero">
+      <div class="page-hero-inner">
+        <h1>Sobre MedSeguro</h1>
+        <p>Somos una plataforma que te permite verificar la autenticidad de tus medicamentos con información oficial y confiable de DIGEMID y entidades autorizadas.</p>
+      </div>
+    </div>
+    <div class="section-container">
+      <div class="nosotros-grid">
+        <div class="nosotros-img-placeholder">
+          <div class="placeholder-img">
+            <svg viewBox="0 0 100 100" fill="none" stroke="#2a9d5c" stroke-width="2"><circle cx="50" cy="35" r="20"/><path d="M15 90c0-19 15-35 35-35s35 16 35 35"/></svg>
+            <p>Equipo MedSeguro</p>
+          </div>
+        </div>
+        <div class="nosotros-mvv">
+          <div class="mvv-item"><h3>Misión</h3><p>Promover el consumo seguro de medicamentos brindando información confiable y accesible</p></div>
+          <div class="mvv-item"><h3>Visión</h3><p>Ser la plataforma líder en verificación de medicamentos en Perú.</p></div>
+          <div class="mvv-item"><h3>Valores</h3><div class="valores-list"><span>🛡️ Seguridad</span><span>✅ Confianza</span><span>💡 Innovación</span><span>❤️ Salud primero</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="contacto-section" id="sec-contacto">
+      <div class="contacto-grid">
+        <div class="contacto-info">
+          <h2>Contáctanos</h2>
+          <p>Estamos aquí para ayudarte</p>
+          <div class="contacto-item"><div class="contacto-icon">📧</div><div><strong>Correo</strong><p>MedSeguroOficial@gmail.com</p></div></div>
+          <div class="contacto-item"><div class="contacto-icon">📞</div><div><strong>Teléfono</strong><p>+51 987 654 321</p></div></div>
+          <div class="contacto-item"><div class="contacto-icon">📍</div><div><strong>Ubicación</strong><p>Lima, Perú</p></div></div>
+          <div class="contacto-item"><div class="contacto-icon">🕐</div><div><strong>Horario de atención</strong><p>Lunes a Viernes<br>9:00 am – 6:00 p.m.</p></div></div>
+        </div>
+        <div class="contacto-form">
+          <div class="form-row">
+            <div class="form-group"><label>Nombre</label><input type="text" placeholder="Juan Carlos" id="cNombre"/></div>
+            <div class="form-group"><label>Apellido</label><input type="text" placeholder="Pérez Gómez" id="cApellido"/></div>
+          </div>
+          <div class="form-group"><label>Email</label><input type="email" placeholder="juan.perez@email.com" id="cEmail"/></div>
+          <div class="form-group"><label>Mensaje</label><textarea placeholder="Escribe tu mensaje aquí..." rows="5" id="cMensaje"></textarea></div>
+          <button class="btn-primary full" onclick="enviarContacto()">Enviar mensaje</button>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer-bottom">
+        <div class="footer-brand"><div class="logo"><div class="logo-icon">+</div><span>MedSeguro</span></div><p>Verificación oficial de medicamentos</p><div class="footer-social"><a href="#">f</a><a href="#">ig</a><a href="#">tw</a><a href="#">yt</a></div></div>
+        <div class="footer-col"><h4>Enlaces rápidos</h4><a onclick="goTo('inicio')">Inicio</a><a onclick="goTo('alertas')">Alertas</a><a onclick="goTo('nosotros')">Sobre Nosotros</a></div>
+        <div class="footer-col"><h4>Contacto</h4><a href="mailto:MedSeguroOficial@gmail.com">MedSeguroOficial@gmail.com</a></div>
+      </div>
+      <div class="footer-copy"><p>© 2024 MedSeguro. Todos los derechos reservados.</p></div>
+    </footer>
+  </div>
+
+  <!-- ==================== PAGE: HISTORIAL ==================== -->
+  <div class="page" id="page-historial">
+    <div class="page-hero">
+      <div class="page-hero-inner">
+        <h1>Historial de verificación</h1>
+        <p>Revisa y gestiona todas las verificaciones que has realizado</p>
+        <div class="filters">
+          <button class="filter-btn active" onclick="filtrarHistorial('todos',this)">Todos</button>
+          <button class="filter-btn" onclick="filtrarHistorial('autentico',this)">Auténticos</button>
+          <button class="filter-btn f-advertencia" onclick="filtrarHistorial('advertencia',this)">Advertencias</button>
+          <button class="filter-btn f-riesgo" onclick="filtrarHistorial('riesgo',this)">Riesgo</button>
+        </div>
+        <div class="historial-search-bar">
+          <input type="text" placeholder="Buscar en historial..." id="historialSearch" oninput="buscarHistorial()"/>
+          <button class="btn-primary" onclick="showToast('Exportado exitosamente','success')">Exportar</button>
+        </div>
+      </div>
+    </div>
+    <div class="section-container">
+      <div class="historial-list" id="historialList"></div>
+      <button class="btn-ver-todas" onclick="showToast('No hay más registros','')">CARGAR MÁS</button>
+    </div>
+    <div class="frecuentes-section">
+      <h2>Medicinas frecuentes</h2>
+      <p>Accede rápidamente a los medicamentos que verificas con mayor frecuencia</p>
+      <div id="frecuentesList"></div>
+      <div class="frecuente-add" onclick="showToast('Función disponible próximamente','')">
+        <div class="frecuente-add-icon">＋</div>
+        <div><h3>Añadir medicamento frecuente</h3><p>Marca y guarda medicamentos para acceder más rápido</p></div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer-bottom">
+        <div class="footer-brand"><div class="logo"><div class="logo-icon">+</div><span>MedSeguro</span></div><p>Verificación oficial de medicamentos</p></div>
+        <div class="footer-col"><h4>Navegación</h4><a onclick="goTo('inicio')">Inicio</a><a onclick="goTo('alertas')">Alertas</a></div>
+      </div>
+      <div class="footer-copy"><p>© 2024 MedSeguro. Todos los derechos reservados.</p></div>
+    </footer>
+  </div>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- LOGIN -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('loginModal')">✕</button>
+      <h2>Iniciar sesión</h2>
+      <p class="modal-sub">Bienvenido de nuevo</p>
+      <div class="form-group"><label>Correo electrónico</label><input type="email" placeholder="ejemplo@correo.com" id="loginEmail"/></div>
+      <div class="form-group"><label>Contraseña</label><input type="password" placeholder="••••••••••••" id="loginPass"/><span class="form-link" onclick="openModal('forgotModal')">¿Olvidaste tu contraseña?</span></div>
+      <button class="btn-primary full" onclick="login()">Iniciar sesión</button>
+      <div class="divider">o continúa con</div>
+      <button class="btn-social"><span>G</span> Google</button>
+      <button class="btn-social"><span>🍎</span> Apple</button>
+      <p class="modal-footer">¿No tienes cuenta? <span onclick="switchModal('loginModal','registerModal')">Regístrate</span></p>
+    </div>
+  </div>
+
+  <!-- REGISTER -->
+  <div class="modal-overlay" id="registerModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('registerModal')">✕</button>
+      <h2>Crear cuenta</h2>
+      <p class="modal-sub">Completa tus datos para crear una cuenta</p>
+      <div class="form-row">
+        <div class="form-group"><label>Nombres</label><input type="text" placeholder="Juan Rodrigo" id="regNombre"/></div>
+        <div class="form-group"><label>Apellidos</label><input type="text" placeholder="Pérez Lopez" id="regApellido"/></div>
+      </div>
+      <div class="form-group"><label>Correo electrónico</label><input type="email" placeholder="ejemplo@correo.com" id="regEmail"/></div>
+      <div class="form-group"><label>Contraseña</label><input type="password" placeholder="••••••••••••" id="regPass"/></div>
+      <div class="form-group"><label>Confirmar contraseña</label><input type="password" placeholder="••••••••••••" id="regPass2"/></div>
+      <label class="checkbox-label"><input type="checkbox" id="regTerms"/> Acepto los <span>Términos y Condiciones</span> y la <span>Política de Privacidad</span></label>
+      <button class="btn-primary full" onclick="register()">Crear cuenta</button>
+      <p class="modal-footer">¿Ya tienes cuenta? <span onclick="switchModal('registerModal','loginModal')">Iniciar sesión</span></p>
+    </div>
+  </div>
+
+  <!-- FORGOT -->
+  <div class="modal-overlay" id="forgotModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('forgotModal')">✕</button>
+      <h2>¿Olvidaste tu contraseña?</h2>
+      <p class="modal-sub">Ingresa tu correo y te enviaremos instrucciones para restablecerla.</p>
+      <div class="form-group"><label>Correo electrónico</label><input type="email" placeholder="ejemplo@correo.com" id="forgotEmail"/></div>
+      <button class="btn-primary full" onclick="enviarReset()">Enviar instrucciones</button>
+      <p class="modal-footer"><span onclick="switchModal('forgotModal','loginModal')">Volver al inicio de sesión</span></p>
+    </div>
+  </div>
+
+  <!-- ESCANEAR -->
+  <div class="modal-overlay" id="scanModal">
+    <div class="modal scan-modal">
+      <button class="modal-close" onclick="closeModal('scanModal')">✕</button>
+      <h2>Escanear</h2>
+      <p class="modal-sub">Enfoca el código de barras o código QR del medicamento</p>
+      <div class="scan-area">
+        <div class="scan-frame">
+          <div class="corner tl"></div><div class="corner tr"></div>
+          <div class="corner bl"></div><div class="corner br"></div>
+          <div class="scan-line"></div>
+        </div>
+      </div>
+      <div class="scan-options">
+        <button class="btn-outline full">📁 Subir archivo</button>
+        <button class="btn-outline full" onclick="toggleManual()">⌨️ Ingresar el código manualmente</button>
+      </div>
+      <div id="manualInputArea" style="display:none" class="form-group" style="margin-top:12px">
+        <label>Código o nombre del medicamento</label>
+        <input type="text" placeholder="Ej: Paracetamol 500mg" id="manualCode" onkeydown="if(event.key==='Enter') verificarManual()"/>
+        <button class="btn-primary full" style="margin-top:8px" onclick="verificarManual()">Verificar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTADO -->
+  <div class="modal-overlay" id="resultModal">
+    <div class="modal result-modal">
+      <button class="modal-close" onclick="closeModal('resultModal')">✕</button>
+      <div id="resultContent"></div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
